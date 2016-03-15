@@ -26,7 +26,7 @@ namespace Nop.Data.Mapping.Customers
 
             this.HasMany(c => c.LD_CustomerCategoryPrice)
                 .WithMany()
-                .Map(m => m.ToTable("Customer_CategoryPrice_Mapping"))
+                .Map(m => m.ToTable("Customer_CategoryPrice_Mapping"));
         }
     }
 }

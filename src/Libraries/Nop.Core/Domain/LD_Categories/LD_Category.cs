@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Nop.Core.Domain.LD_Category
+namespace Nop.Core.Domain.LD_Categories
 {
     public partial class LD_Category : BaseEntity
     {

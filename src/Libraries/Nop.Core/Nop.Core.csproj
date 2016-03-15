@@ -112,7 +112,7 @@
     <Compile Include="Domain\Customers\CustomerAttributeValue.cs" />
     <Compile Include="Domain\Customers\CustomerLoginResults.cs" />
     <Compile Include="Domain\Customers\Events.cs" />
-    <Compile Include="Domain\LD_Category\LD_Category.cs" />
+    <Compile Include="Domain\LD_Categories\LD_Category.cs" />
     <Compile Include="Domain\LD_Lottery\LD_Lottery.cs" />
     <Compile Include="Domain\Messages\MessageDelayPeriod.cs" />
     <Compile Include="Domain\Messages\QueuedEmailPriority.cs" />

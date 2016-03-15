@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Nop.Core.Domain.LD_Categories;
 
 namespace Nop.Core.Domain.Customers
 {
@@ -11,6 +12,8 @@ namespace Nop.Core.Domain.Customers
         public int WinningUnit { get; set; }
         public bool Active { get; set; }
         public DateTime BeginUsedDate { get; set; }
+
+        public virtual LD_Category Category { get; set; }
 
         public virtual Customer Customer { get; set; }
     }
