@@ -1,0 +1,8 @@
+﻿Group: LD Tracker
+FriendlyName: LD Tracker
+SystemName: Nop.Plugin.LDTracker
+Version: 1.0
+SupportedVersions: 3.80
+Author: Nam
+DisplayOrder: 1
+FileName: Nop.Plugin.LDTracker.dll
