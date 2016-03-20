@@ -10,6 +10,7 @@ using Nop.Services.Logging;
 using Nop.Services.Security;
 using Nop.Web.Framework.Kendoui;
 using Nop.Web.Framework.Mvc;
+using Nop.Core.Domain.Logging;
 
 namespace Nop.Admin.Controllers
 {
@@ -71,10 +72,63 @@ namespace Nop.Admin.Controllers
             return RedirectToAction("ListTypes");
         }
 
+        public ActionResult Create()
+        {
+            return View(new ActivityLogTypeModel());
+        }
+
+        [HttpPost]
+        public ActionResult Create(ActivityLogTypeModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var entity = model.ToEntity();
+                entity.SystemKeyword = model.SystemKeyword;
+                _customerActivityService.InsertActivityType(entity);
+
+                // Activity Log
+                _customerActivityService.InsertActivity("AddNewActivityType", "ActivityLog.AddNewActivityType", model.Name);
+            }
+            return RedirectToAction("ListTypes");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var activityType = _customerActivityService.GetActivityTypeById(id);
+            
+            //No category found with the specified id
+            if (activityType == null)
+                return RedirectToAction("ListTypes");
+
+            var model = activityType.ToModel();
+            model.SystemKeyword = activityType.SystemKeyword;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ActivityLogTypeModel model)
+        {
+            var entity = _customerActivityService.GetActivityTypeById(model.Id);
+            
+            //No category found with the specified id
+            if (entity == null)
+                return RedirectToAction("ListTypes");
+
+            if (ModelState.IsValid)
+            {
+                entity = model.ToEntity(entity);
+                entity.SystemKeyword = model.SystemKeyword;
+                _customerActivityService.UpdateActivityType(entity);
+
+                // Activity Log
+                _customerActivityService.InsertActivity("EditActivityType", "ActivityLog.EditActivityType", model.Name);
+            }
+            return RedirectToAction("ListTypes");
+        }
         #endregion
-        
+
         #region Activity log
-        
+
         public ActionResult ListLogs()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageActivityLog))

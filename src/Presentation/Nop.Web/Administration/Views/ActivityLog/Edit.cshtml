@@ -1,0 +1,22 @@
+﻿@model ActivityLogTypeModel
+@{
+    //page title
+    ViewBag.Title = T("Admin.ActivityLog.ActivityType.Edit").Text;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "activity-type-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="section-header">
+        <div class="title">
+        <img src="@Url.Content("~/Administration/Content/images/ico-promotions.png")" alt="" />
+            @T("Admin.ActivityLog.ActivityType.AddNew") - @Model.Name @Html.ActionLink("(back to activity type list)", "ListTypes")
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+            <input type="submit" name="save-continue" class="k-button" value="@T("Admin.Common.SaveContinue")" />
+            @*<span id="discount-delete" class="k-button">@T("Admin.Common.Delete")</span>*@
+        </div>
+    </div>
+    @Html.Partial("_CreateOrUpdate", Model)
+}
+@Html.DeleteConfirmation("discount-delete")

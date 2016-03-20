@@ -1,7 +1,7 @@
 ﻿@model LotteryCategory
 @using Nop.Plugin.LDTracker.Domain;
 @using Nop.Core.Infrastructure;
-@using System.Web.Mvc;
+
 @{
     Layout = "~/Administration/Views/Shared/_AdminLayout.cshtml";
     var defaultGridPageSize = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().DefaultGridPageSize;
@@ -12,12 +12,12 @@
 <div class="section-header">
     <div class="title">
         <img src="@Url.Content("~/Administration/Content/images/ico-catalog.png")" alt="" />
-        @T("Plugin.LD.LoteryCategory.ListTitle")
+        @T("LDTracker.LoteryCategory.ListTitle")
     </div>
     <div class="options">
         <a href="@Url.Action("Create")" class="k-button">@T("Admin.Common.AddNew")</a>
     </div>
-    @*<table class="adminContent">
+    <table class="adminContent">
         <tr>
             <td>
                 <div id="categories-grid"></div>
@@ -29,7 +29,7 @@
                             type: "json",
                             transport: {
                                 read: {
-                                    url: "@Html.Raw(Url.Action("List", "Category"))",
+                                    url: "@Html.Raw(Url.Action("List", "LotteryCategory"))",
                                     type: "POST",
                                     dataType: "json",
                                     data: additionalData
@@ -61,20 +61,28 @@
                         scrollable: false,
                         columns: [
                         {
-                            field: "Breadcrumb",
-                            title: "@T("Admin.Catalog.Categories.Fields.Name")"
+                            field: "Name",
+                            title: "@T("LDTracker.LotteryCategory.Fields.Name")"
                         }, {
-                            field: "Published",
-                            title: "@T("Admin.Catalog.Categories.Fields.Published")",
+                            field: "WinningUnit",
+                            title: "@T("LDTracker.LotteryCategory.Fields.WinningUnit")",
+                            width: 100
+                        }, {
+                            field: "Active",
+                            title: "@T("Admin.Catalog.Categories.Fields.Active")",
                             width: 100,
                             headerAttributes: { style: "text-align:center" },
                             attributes: { style: "text-align:center" },
                             template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=Published#.gif" />'
-                        }, {
-                            field: "DisplayOrder",
-                            title: "@T("Admin.Catalog.Categories.Fields.DisplayOrder")",
+                        },{
+                            field: "Price",
+                            title: "@T("LDTracker.LotteryCategory.Fields.Price")",
                             width: 100
                         }, {
+                            field: "PriorityOrder",
+                            title: "@T("LDTracker.LotteryCategory.Fields.PriorityOrder")",
+                            width: 100
+                          }, {
                             field: "Id",
                             title: "@T("Admin.Common.Edit")",
                             width: 100,
@@ -84,36 +92,7 @@
                     });
                 });
                 </script>
-
-                <script type="text/javascript">
-                $(document).ready(function() {
-                    //search button
-                    $('#search-categories').click(function() {
-                        //search
-                        var grid = $('#categories-grid').data('kendoGrid');
-                        grid.dataSource.page(1); //new search. Set page size to 1
-                        //grid.dataSource.read(); we already loaded the grid above using "page" function
-                        return false;
-                    });
-
-                    $("#@Html.FieldIdFor(model => model.SearchCategoryName)").keydown(function(event) {
-                        if (event.keyCode == 13) {
-                            $("#search-categories").click();
-                            return false;
-                        }
-                    });
-                });
-
-                function additionalData() {
-                    var data = {
-                        SearchCategoryName: $('#@Html.FieldIdFor(model => model.SearchCategoryName)').val(),
-                        SearchStoreId: $('#SearchStoreId').val()
-                    };
-                    addAntiForgeryToken(data);
-                    return data;
-                }
-                </script>
             </td>
         </tr>
-    </table>*@
+    </table>
 </div>

@@ -392,6 +392,16 @@ namespace Nop.Admin.Extensions
             return entity.MapTo<ActivityLogType, ActivityLogTypeModel>();
         }
 
+        public static ActivityLogType ToEntity(this ActivityLogTypeModel model)
+        {
+            return model.MapTo<ActivityLogTypeModel, ActivityLogType>();
+        }
+
+        public static ActivityLogType ToEntity(this ActivityLogTypeModel model,ActivityLogType entity)
+        {
+            return model.MapTo(entity);
+        }
+
         public static ActivityLogModel ToModel(this ActivityLog entity)
         {
             return entity.MapTo<ActivityLog, ActivityLogModel>();

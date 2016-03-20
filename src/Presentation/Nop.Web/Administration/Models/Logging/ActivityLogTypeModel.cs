@@ -5,6 +5,9 @@ namespace Nop.Admin.Models.Logging
 {
     public partial class ActivityLogTypeModel : BaseNopEntityModel
     {
+        [NopResourceDisplayName("Admin.Configuration.ActivityLog.ActivityLogType.Fields.SystemKeyword")]
+        public string SystemKeyword { get; set; }
+
         [NopResourceDisplayName("Admin.Configuration.ActivityLog.ActivityLogType.Fields.Name")]
         public string Name { get; set; }
         [NopResourceDisplayName("Admin.Configuration.ActivityLog.ActivityLogType.Fields.Enabled")]

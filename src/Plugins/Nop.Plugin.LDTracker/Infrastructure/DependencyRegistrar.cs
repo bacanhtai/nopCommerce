@@ -13,6 +13,7 @@ using Nop.Plugin.LDTracker.Domain;
 using Nop.Core.Data;
 using Autofac.Core;
 using Nop.Data;
+using Nop.Plugin.LDTracker.Services;
 
 namespace Nop.Plugin.LDTracker.Infrastructure
 {
@@ -22,7 +23,7 @@ namespace Nop.Plugin.LDTracker.Infrastructure
 
         public virtual void Register(ContainerBuilder builder, ITypeFinder typeFinder)
         {
-            //builder.RegisterType<ViewTrackingService>().As<IViewTrackingService>().InstancePerLifetimeScope();
+            builder.RegisterType<LotteryCategoryService>().As<ILotteryCategoryService>().InstancePerLifetimeScope();
 
             //data context
             this.RegisterPluginDataContext<LDTrackerObjectContext>(builder, CONTEXT_NAME);
@@ -36,7 +37,7 @@ namespace Nop.Plugin.LDTracker.Infrastructure
 
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder, NopConfig config)
         {
-            //builder.RegisterType<ViewTrackingService>().As<IViewTrackingService>().InstancePerLifetimeScope();
+            builder.RegisterType<LotteryCategoryService>().As<ILotteryCategoryService>().InstancePerLifetimeScope();
 
             //data context
             this.RegisterPluginDataContext<LDTrackerObjectContext>(builder, CONTEXT_NAME);

@@ -1,0 +1,34 @@
+﻿@model ActivityLogTypeModel
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+
+<table class="adminContent">
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.SystemKeyword):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.SystemKeyword)
+            @Html.ValidationMessageFor(model => model.SystemKeyword)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.Name):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.Enabled):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.Enabled)
+            @Html.ValidationMessageFor(model => model.Enabled)
+        </td>
+    </tr>
+</table>

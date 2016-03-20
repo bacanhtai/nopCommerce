@@ -12,6 +12,7 @@
             @T("Admin.Configuration.ActivityLog.ActivityLogType")
         </div>
         <div class="options">
+            <a href="@Url.Action("Create")" class="k-button">@T("Admin.Common.AddNew")</a>
             <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
         </div>
     </div>
@@ -66,6 +67,10 @@
                                 previousNext: false,
                                 info: false
                             },
+                            editable: {
+                                confirmation: false,
+                                mode: "inline"
+                            },
                             scrollable: false,
                             columns: [
                                 {
@@ -79,6 +84,11 @@
                                     attributes: { style: "text-align:center" },
                                     template: "<input name='checkbox_activity_types' value='#=Id#' type='checkbox' class='checkboxGroups' # if(Enabled) {# checked='checked' #}  # />",
                                     width: 100
+                                }, {
+                                    field: "Id",
+                                    title: "@T("Admin.Common.Edit")",
+                                    width: 100,
+                                    template: '<a href="Edit/#=Id#">@T("Admin.Common.Edit")</a>'
                                 }
                             ]
                         });

@@ -964,6 +964,9 @@
     <Content Include="Views\Common\LanguageSelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\ActivityLog\_CreateOrUpdate.cshtml" />
+    <Content Include="Views\ActivityLog\Create.cshtml" />
+    <Content Include="Views\ActivityLog\Edit.cshtml" />
     <None Include="Views\Product\_ProductAttributes.cshtml" />
     <Content Include="Views\Setting\_ReturnRequestReasons.cshtml" />
     <Content Include="Views\Setting\ReturnRequestReasonEdit.cshtml" />
