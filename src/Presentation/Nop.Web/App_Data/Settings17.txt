@@ -1,0 +1,2 @@
+DataProvider: sqlserver
+DataConnectionString: Data Source=NAMNH17-PC\SQLSERVER;Initial Catalog=NopCommerce;Integrated Security=True;User ID=SA;Password=123456;MultipleActiveResultSets=True
