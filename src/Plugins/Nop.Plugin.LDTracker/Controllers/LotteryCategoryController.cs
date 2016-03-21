@@ -1,6 +1,7 @@
 ﻿using Nop.Core.Data;
 using Nop.Plugin.LDTracker.Domain;
 using Nop.Plugin.LDTracker.Services;
+using Nop.Services.Localization;
 using Nop.Web.Framework.Controllers;
 using Nop.Web.Framework.Kendoui;
 using Nop.Web.Framework.Security;
@@ -17,14 +18,16 @@ namespace Nop.Plugin.LDTracker.Controllers
     public class LotteryCategoryController : BasePluginController
     {
         private readonly ILotteryCategoryService _categoryService;
-        public LotteryCategoryController(ILotteryCategoryService categoryService) {
+        private readonly ILocalizationService _localizationService;
+
+        public LotteryCategoryController(ILotteryCategoryService categoryService, ILocalizationService localizationService) {
             _categoryService = categoryService;
+            _localizationService = localizationService;
         }
         
         public ActionResult List()
         {
             return View("~/Plugins/LDTracker/Views/LotteryCategory/List.cshtml");
-            //return View();
         }
 
         [HttpPost]
@@ -47,19 +50,53 @@ namespace Nop.Plugin.LDTracker.Controllers
             var category = new LotteryCategory {
                 Active = true
             };
-            return View(category);
+            return View("~/Plugins/LDTracker/Views/LotteryCategory/Create.cshtml",category);
         }
 
-        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        //[HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        [HttpPost]
+        [AdminAntiForgery]
         public ActionResult Create(LotteryCategory category, bool continueEditing)
         {
             if (ModelState.IsValid)
             {
                 _categoryService.InsertCategory(category);
             }
-            return RedirectToAction("List");
+            return RedirectToAction("~/Plugins/LDTracker/Views/LotteryCategory/List.cshtml");
         }
 
+        public ActionResult Edit(int id)
+        {
+            var category = _categoryService.GetCategoryById(id);
+            if (category == null)
+                return RedirectToAction("~/Plugins/LDTracker/Views/LotteryCategory/List.cshtml");
+
+            return View("~/Plugins/LDTracker/Views/LotteryCategory/Edit.cshtml", category);
+        }
+
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        public ActionResult Edit(LotteryCategory entity, bool continueEditing)
+        {
+            var category = _categoryService.GetCategoryById(entity.Id);
+            if (category == null)
+                return RedirectToAction("~/Plugins/LDTracker/Views/LotteryCategory/List.cshtml");
+
+            return RedirectToAction("~/Plugins/LDTracker/Views/LotteryCategory/List.cshtml");
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var entity = _categoryService.GetCategoryById(id);
+            if (entity == null)
+                //No campaign found with the specified id
+                return RedirectToAction("~/Plugins/LDTracker/Views/LotteryCategory/List.cshtml");
+
+            _categoryService.DeleteCategory(entity);
+
+            SuccessNotification(_localizationService.GetResource("LDTracker.LotteryCategory.Deleted"));
+            return RedirectToAction("~/Plugins/LDTracker/Views/LotteryCategory/List.cshtml");
+        }
         #endregion Create / Edit / Delete
     }
 }

@@ -32,7 +32,7 @@
                                     url: "@Html.Raw(Url.Action("List", "LotteryCategory"))",
                                     type: "POST",
                                     dataType: "json",
-                                    data: additionalData
+                                    data: addAntiForgeryToken
                                 }
                             },
                             schema: {
@@ -90,6 +90,26 @@
                             }
                         ]
                     });
+                });
+                </script>
+
+                <script type="text/javascript">
+                    $(document).ready(function() {
+                        var postData = $(this.form).serialize();
+                        addAntiForgeryToken(postData);
+
+                        var grid = $('#categories-grid').data('kendoGrid');
+                        grid.dataSource.page(1); //new search. Set page size to 1
+                        //grid.dataSource.read(); we already loaded the grid above using "page" function
+
+                        @*function additionalData() {
+                            var data = {
+                                SearchCategoryName: $('#@Html.FieldIdFor(model => model.SearchCategoryName)').val(),
+                                SearchStoreId: $('#SearchStoreId').val()
+                            };
+                            addAntiForgeryToken(data);
+                            return data;
+                        }*@
                 });
                 </script>
             </td>

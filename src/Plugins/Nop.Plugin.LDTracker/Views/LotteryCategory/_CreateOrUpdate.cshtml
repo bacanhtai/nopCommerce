@@ -1,0 +1,54 @@
+﻿@model LotteryCategory
+@using Nop.Plugin.LDTracker.Domain;
+@using Nop.Web.Framework;
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+
+<table class="adminContent">
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.Name):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.WinningUnit):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.WinningUnit)
+            @Html.ValidationMessageFor(model => model.WinningUnit)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.Active):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.Price):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.Price)
+            @Html.ValidationMessageFor(model => model.Price)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.PriorityOrder):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.PriorityOrder)
+            @Html.ValidationMessageFor(model => model.PriorityOrder)
+        </td>
+    </tr>
+</table>
