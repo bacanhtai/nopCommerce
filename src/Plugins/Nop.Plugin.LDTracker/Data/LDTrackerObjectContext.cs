@@ -21,6 +21,7 @@ namespace Nop.Plugin.LDTracker.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new LotteryCategoryMap());
+            modelBuilder.Configurations.Add(new LotteryCustomerMap());
 
             base.OnModelCreating(modelBuilder);
         }

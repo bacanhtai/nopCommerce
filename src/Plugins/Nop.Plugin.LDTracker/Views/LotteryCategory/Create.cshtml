@@ -1,5 +1,5 @@
-﻿@model LotteryCategory
-@using Nop.Plugin.LDTracker.Domain;
+﻿@model LotteryCategoryModel
+@using Nop.Plugin.LDTracker.Models;
 @using Nop.Core.Infrastructure;
 @using Nop.Web.Framework;
 
@@ -8,8 +8,7 @@
     //page title
     ViewBag.Title = T("LDTracker.LotteryCategory.AddNew").Text;
 }
-@*@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "lottery-category-form" }))*@
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "lottery-category-form" }))
 {
     @Html.AntiForgeryToken()
     <div class="section-header">

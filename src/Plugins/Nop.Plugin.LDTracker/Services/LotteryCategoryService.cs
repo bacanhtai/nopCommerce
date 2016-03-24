@@ -28,6 +28,9 @@ namespace Nop.Plugin.LDTracker.Services
 
             category.Active = false;
             UpdateCategory(category);
+
+            //event notification
+            _eventPublisher.EntityDeleted(category);
         }
 
         public virtual IPagedList<LotteryCategory> GetAllCategories(int pageIndex = 0, int pageSize = int.MaxValue)

@@ -1,5 +1,5 @@
-﻿@model LotteryCategory
-@using Nop.Plugin.LDTracker.Domain;
+﻿@model LotteryCategoryModel
+@using Nop.Plugin.LDTracker.Models;
 @using Nop.Core.Infrastructure;
 
 @{
@@ -69,11 +69,11 @@
                             width: 100
                         }, {
                             field: "Active",
-                            title: "@T("Admin.Catalog.Categories.Fields.Active")",
+                            title: "@T("LDTracker.LotteryCategory.Fields.Active")",
                             width: 100,
                             headerAttributes: { style: "text-align:center" },
-                            attributes: { style: "text-align:center" },
-                            template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=Published#.gif" />'
+                            attributes: { style: "text-align:center" }
+                            @*template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=Published#.gif" />'*@
                         },{
                             field: "Price",
                             title: "@T("LDTracker.LotteryCategory.Fields.Price")",

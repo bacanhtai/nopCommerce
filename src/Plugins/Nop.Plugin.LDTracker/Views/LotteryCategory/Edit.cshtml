@@ -1,5 +1,5 @@
-﻿@model LotteryCategory
-@using Nop.Plugin.LDTracker.Domain;
+﻿@model LotteryCategoryModel
+@using Nop.Plugin.LDTracker.Models;
 @using Nop.Web.Framework;
 
 @{
@@ -23,4 +23,4 @@
     </div>
     @Html.Partial("~/Plugins/LDTracker/Views/LotteryCategory/_CreateOrUpdate.cshtml", Model)
 }
-@Html.DeleteConfirmation("btnDelete")
+@Html.DeleteConfirmation("lottery-category-delete")

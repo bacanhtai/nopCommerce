@@ -17,12 +17,12 @@ using Nop.Plugin.LDTracker.Extensions;
 namespace Nop.Plugin.LDTracker.Controllers
 {
     [AdminAuthorize]
-    public class LotteryCategoryController : BasePluginController
+    public class LotteryCustomerController : BasePluginController
     {
         private readonly ILotteryCategoryService _categoryService;
         private readonly ILocalizationService _localizationService;
 
-        public LotteryCategoryController(ILotteryCategoryService categoryService, ILocalizationService localizationService) {
+        public LotteryCustomerController(ILotteryCategoryService categoryService, ILocalizationService localizationService) {
             _categoryService = categoryService;
             _localizationService = localizationService;
         }

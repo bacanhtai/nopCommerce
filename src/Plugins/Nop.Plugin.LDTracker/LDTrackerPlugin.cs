@@ -23,6 +23,7 @@ namespace Nop.Plugin.LDTracker
         }
         public void ManageSiteMap(SiteMapNode rootNode)
         {
+            List<SiteMapNode> list = new List<SiteMapNode>();
             SiteMapNode menuItem = new SiteMapNode
             {
                 SystemName = "LotteryCategories",
@@ -32,12 +33,27 @@ namespace Nop.Plugin.LDTracker
                 Visible = true,
                 RouteValues = new RouteValueDictionary() { { "area", null } }
             };
+            list.Add(menuItem);
 
-            var pluginNode = rootNode.ChildNodes.FirstOrDefault(x => x.SystemName == "Third party plugins");
-            if (pluginNode != null)
-                pluginNode.ChildNodes.Add(menuItem);
-            else
-                rootNode.ChildNodes.Add(menuItem);
+            menuItem = new SiteMapNode
+            {
+                SystemName = "LotteryCustomers",
+                Title = "Khách hàng",
+                ControllerName = "LotteryCustomer",
+                ActionName = "List",
+                Visible = true,
+                RouteValues = new RouteValueDictionary() { { "area", null } }
+            };
+            list.Add(menuItem);
+
+            foreach (var item in list)
+            {
+                var pluginNode = rootNode.ChildNodes.FirstOrDefault(x => x.SystemName == "Third party plugins");
+                if (pluginNode != null)
+                    pluginNode.ChildNodes.Add(item);
+                else
+                    rootNode.ChildNodes.Add(item);
+            }
         }
 
         public override void Install()

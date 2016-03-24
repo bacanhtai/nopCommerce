@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Nop.Plugin.LDTracker.Infrastructure;
 
-namespace Nop.Plugin.LD.LDTracker
+namespace Nop.Plugin.LDTracker
 {
     public class RouteConfig : IRouteProvider
     {
