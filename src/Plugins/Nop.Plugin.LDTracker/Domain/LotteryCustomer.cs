@@ -18,7 +18,7 @@ namespace Nop.Plugin.LDTracker.Domain
         public string Note { get; set; }
 
         public string Address { get; set; }
-
+        
         public bool Active { get; set; }
 
         public bool Deleted { get; set; }

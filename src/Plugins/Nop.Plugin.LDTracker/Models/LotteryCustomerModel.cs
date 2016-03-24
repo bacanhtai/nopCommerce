@@ -4,7 +4,7 @@ using Nop.Web.Framework.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace Nop.Plugin.LDTracker.Domain
+namespace Nop.Plugin.LDTracker.Models
 {
     public partial class LotteryCustomerModel : BaseNopEntityModel
     {
@@ -34,5 +34,15 @@ namespace Nop.Plugin.LDTracker.Domain
 
         [NopResourceDisplayName("LDTracker.LotteryCustomer.Fields.CreateDate")]
         public DateTime CreateDate { get; set; }
+
+        #region CustomerPrice
+
+        public decimal Lo { get; set; }
+
+        public decimal De { get; set; }
+
+        public decimal Xien { get; set; }
+
+        #endregion CustomerPrice
     }
 }

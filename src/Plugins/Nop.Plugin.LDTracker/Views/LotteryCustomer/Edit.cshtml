@@ -1,0 +1,26 @@
+﻿@model LotteryCustomerModel
+@using Nop.Plugin.LDTracker.Models;
+@using Nop.Web.Framework;
+
+@{
+    Layout = "~/Administration/Views/Shared/_AdminLayout.cshtml";
+    //page title
+    ViewBag.Title = T("LDTracker.LotteryCustomer.Edit").Text;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "lottery-customer-form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="section-header">
+        <div class="title">
+        <img src="@Url.Content("~/Administration/Content/images/ico-promotions.png")" alt="" />
+            @T("LDTracker.LotteryCustomer.AddNew") - @Model.Name @Html.ActionLink("(back to lottery customer list)", "List")
+        </div>
+        <div class="options">
+            <input type="submit" name="save" class="k-button" value="@T("Admin.Common.Save")" />
+            <input type="submit" name="save-continue" class="k-button" value="@T("Admin.Common.SaveContinue")" />
+            <span id="btnDelete" class="k-button">@T("Admin.Common.Delete")</span>
+        </div>
+    </div>
+    @Html.Partial("~/Plugins/LDTracker/Views/LotteryCustomer/_CreateOrUpdate.cshtml", Model)
+}
+@Html.DeleteConfirmation("lottery-customer-delete")

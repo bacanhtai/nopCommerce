@@ -19,11 +19,11 @@ namespace Nop.Plugin.LDTracker.Controllers
     [AdminAuthorize]
     public class LotteryCustomerController : BasePluginController
     {
-        private readonly ILotteryCategoryService _categoryService;
+        private readonly ILotteryCustomerService _customerService;
         private readonly ILocalizationService _localizationService;
 
-        public LotteryCustomerController(ILotteryCategoryService categoryService, ILocalizationService localizationService) {
-            _categoryService = categoryService;
+        public LotteryCustomerController(ILotteryCustomerService customerService, ILocalizationService localizationService) {
+            _customerService = customerService;
             _localizationService = localizationService;
         }
 
@@ -45,11 +45,18 @@ namespace Nop.Plugin.LDTracker.Controllers
         [AdminAntiForgery]
         public ActionResult List(DataSourceRequest command)
         {
-            var categories = _categoryService.GetAllCategories(command.Page - 1,command.PageSize);
+            var customers = _customerService.GetAllCustomers(command.Page - 1,command.PageSize);
+            var listCustomerPrice = _customerService.ge
+
             var gridModel = new DataSourceResult
             {
-                Data = categories,
-                Total = categories.TotalCount
+                Data = customers.Select(x =>
+                {
+                    var customer = x.ToModel();
+                    customer.Lo = 0;
+                    return customer;
+                }),
+                Total = customers.TotalCount
             };
             return Json(gridModel);
         }
@@ -73,7 +80,7 @@ namespace Nop.Plugin.LDTracker.Controllers
             if (ModelState.IsValid)
             {
                 var entity = category.ToEntity();
-                _categoryService.InsertCategory(entity);
+                _customerService.InsertCategory(entity);
 
                 SuccessNotification(_localizationService.GetResource("LDTracker.LotteryCategory.Added"));
                 return continueEditing != null ? RedirectToAction("Edit", new { id = category.Id }) : RedirectToAction("List");
@@ -84,7 +91,7 @@ namespace Nop.Plugin.LDTracker.Controllers
 
         public ActionResult Edit(int id)
         {
-            var category = _categoryService.GetCategoryById(id);
+            var category = _customerService.GetCategoryById(id);
             if (category == null)
                 return RedirectToAction(GetView("List"));
             var model = category.ToModel();
@@ -97,14 +104,14 @@ namespace Nop.Plugin.LDTracker.Controllers
         public ActionResult Edit(LotteryCategoryModel model, FormCollection formData)
         {
             var continueEditing = Request.Form["save-continue"];
-            var category = _categoryService.GetCategoryById(model.Id);
+            var category = _customerService.GetCategoryById(model.Id);
             if (category == null)
                 return RedirectToAction("List");
 
             if (ModelState.IsValid)
             {
                 var entity = model.MapTo(category);
-                _categoryService.UpdateCategory(entity);
+                _customerService.UpdateCategory(entity);
 
                 SuccessNotification(_localizationService.GetResource("LDTracker.LotteryCategory.Edited"));
                 return continueEditing != null ? RedirectToAction("Edit", new { id = model.Id }) : RedirectToAction("List");
@@ -116,12 +123,12 @@ namespace Nop.Plugin.LDTracker.Controllers
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var entity = _categoryService.GetCategoryById(id);
+            var entity = _customerService.GetCategoryById(id);
             if (entity == null)
                 //No campaign found with the specified id
                 return RedirectToAction("List");
 
-            _categoryService.DeleteCategory(entity);
+            _customerService.DeleteCategory(entity);
 
             SuccessNotification(_localizationService.GetResource("LDTracker.LotteryCategory.Deleted"));
             return RedirectToAction("List");

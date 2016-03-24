@@ -16,6 +16,8 @@ namespace Nop.Plugin.LDTracker.Extensions
             return AutoMapperConfiguration.Mapper.Map(source, destination);
         }
 
+        #region LotteryCategory
+
         public static LotteryCategoryModel ToModel(this LotteryCategory entity)
         {
             return entity.MapTo<LotteryCategory, LotteryCategoryModel>();
@@ -35,5 +37,31 @@ namespace Nop.Plugin.LDTracker.Extensions
         {
             return model.MapTo(entity);
         }
+
+        #endregion LotteryCategory
+
+        #region LotteryCustomer
+
+        public static LotteryCustomerModel ToModel(this LotteryCustomer entity)
+        {
+            return entity.MapTo<LotteryCustomer, LotteryCustomerModel>();
+        }
+
+        public static LotteryCustomerModel ToModel(this LotteryCustomer entity, LotteryCustomerModel model)
+        {
+            return entity.MapTo(model);
+        }
+
+        public static LotteryCustomer ToEntity(this LotteryCustomerModel model)
+        {
+            return model.MapTo<LotteryCustomerModel, LotteryCustomer>();
+        }
+
+        public static LotteryCustomer ToEntity(this LotteryCustomerModel model, LotteryCustomer entity)
+        {
+            return model.MapTo(entity);
+        }
+
+        #endregion LotteryCustomer
     }
 }

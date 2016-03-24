@@ -38,6 +38,7 @@ namespace Nop.Plugin.LDTracker.Infrastructure
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder, NopConfig config)
         {
             builder.RegisterType<LotteryCategoryService>().As<ILotteryCategoryService>().InstancePerLifetimeScope();
+            builder.RegisterType<LotteryCustomerService>().As<ILotteryCustomerService>().InstancePerLifetimeScope();
 
             //data context
             this.RegisterPluginDataContext<LDTrackerObjectContext>(builder, CONTEXT_NAME);
@@ -45,6 +46,11 @@ namespace Nop.Plugin.LDTracker.Infrastructure
             //override required repository with our custom context
             builder.RegisterType<EfRepository<LotteryCategory>>()
                 .As<IRepository<LotteryCategory>>()
+                .WithParameter(ResolvedParameter.ForNamed<IDbContext>(CONTEXT_NAME))
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<EfRepository<LotteryCustomer>>()
+                .As<IRepository<LotteryCustomer>>()
                 .WithParameter(ResolvedParameter.ForNamed<IDbContext>(CONTEXT_NAME))
                 .InstancePerLifetimeScope();
         }

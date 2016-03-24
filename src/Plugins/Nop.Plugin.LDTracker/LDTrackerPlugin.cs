@@ -15,11 +15,11 @@ namespace Nop.Plugin.LDTracker
     public class LDTrackerPlugin : BasePlugin, IAdminMenuPlugin
     {
         private LDTrackerObjectContext _context;
-        private IRepository<LotteryCategory> _lotteryCategory;
+        //private IRepository<LotteryCategory> _lotteryCategory;
 
         public LDTrackerPlugin(LDTrackerObjectContext context, IRepository<LotteryCategory> lotteryCategory) {
             _context = context;
-            _lotteryCategory = lotteryCategory;
+            //_lotteryCategory = lotteryCategory;
         }
         public void ManageSiteMap(SiteMapNode rootNode)
         {
