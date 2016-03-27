@@ -35,7 +35,7 @@ namespace Nop.Admin.Models.Catalog
             AddSpecificationAttributeModel = new AddProductSpecificationAttributeModel();
             ProductWarehouseInventoryModels = new List<ProductWarehouseInventoryModel>();
         }
-
+        
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.ID")]
         public override int Id { get; set; }
 

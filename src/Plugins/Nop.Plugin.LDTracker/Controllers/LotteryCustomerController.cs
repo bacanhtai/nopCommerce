@@ -46,7 +46,7 @@ namespace Nop.Plugin.LDTracker.Controllers
         public ActionResult List(DataSourceRequest command)
         {
             var customers = _customerService.GetAllCustomers(command.Page - 1,command.PageSize);
-            var listCustomerPrice = _customerService.ge
+            //var listCustomerPrice = _customerService.ge
 
             var gridModel = new DataSourceResult
             {

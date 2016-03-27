@@ -46,6 +46,17 @@ namespace Nop.Plugin.LDTracker
             };
             list.Add(menuItem);
 
+            menuItem = new SiteMapNode
+            {
+                SystemName = "Lotteries",
+                Title = "Lottery",
+                ControllerName = "Lottery",
+                ActionName = "List",
+                Visible = true,
+                RouteValues = new RouteValueDictionary() { { "area", null } }
+            };
+            list.Add(menuItem);
+
             foreach (var item in list)
             {
                 var pluginNode = rootNode.ChildNodes.FirstOrDefault(x => x.SystemName == "Third party plugins");

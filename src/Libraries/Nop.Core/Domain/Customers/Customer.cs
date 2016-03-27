@@ -15,7 +15,6 @@ namespace Nop.Core.Domain.Customers
         private ICollection<ShoppingCartItem> _shoppingCartItems;
         private ICollection<ReturnRequest> _returnRequests;
         private ICollection<Address> _addresses;
-        private ICollection<LD_CustomerCategoryPrice> _categoryPrice;
 
         /// <summary>
         /// Ctor
@@ -187,11 +186,7 @@ namespace Nop.Core.Domain.Customers
             get { return _addresses ?? (_addresses = new List<Address>()); }
             protected set { _addresses = value; }            
         }
-        
-        public virtual ICollection<LD_CustomerCategoryPrice> LD_CustomerCategoryPrice {
-            get { return _categoryPrice ?? (_categoryPrice = new List<LD_CustomerCategoryPrice>()); }
-            protected set { _categoryPrice = value; }
-        }
+
         #endregion
     }
 }

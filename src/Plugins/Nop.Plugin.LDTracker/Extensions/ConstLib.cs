@@ -13,5 +13,10 @@ namespace Nop.Plugin.LDTracker.Extensions
         public const int Xien2 = 3;
         public const int Xien3 = 4;
         public const int Xien4 = 5;
+
+        public enum LotteryType
+        {
+            KetQuaTruyenThong = 1
+        }
     }
 }

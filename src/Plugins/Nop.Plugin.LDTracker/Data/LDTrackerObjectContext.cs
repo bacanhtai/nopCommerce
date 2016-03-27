@@ -22,6 +22,8 @@ namespace Nop.Plugin.LDTracker.Data
         {
             modelBuilder.Configurations.Add(new LotteryCategoryMap());
             modelBuilder.Configurations.Add(new LotteryCustomerMap());
+            modelBuilder.Configurations.Add(new LotteryMap());
+            modelBuilder.Configurations.Add(new LotteryFullMap());
 
             base.OnModelCreating(modelBuilder);
         }

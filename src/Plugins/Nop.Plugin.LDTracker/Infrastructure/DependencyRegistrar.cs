@@ -33,12 +33,24 @@ namespace Nop.Plugin.LDTracker.Infrastructure
                 .As<IRepository<LotteryCategory>>()
                 .WithParameter(ResolvedParameter.ForNamed<IDbContext>(CONTEXT_NAME))
                 .InstancePerLifetimeScope();
+
+            builder.RegisterType<EfRepository<Lottery>>()
+                .As<IRepository<Lottery>>()
+                .WithParameter(ResolvedParameter.ForNamed<IDbContext>(CONTEXT_NAME))
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<EfRepository<LotteryFull>>()
+                .As<IRepository<LotteryFull>>()
+                .WithParameter(ResolvedParameter.ForNamed<IDbContext>(CONTEXT_NAME))
+                .InstancePerLifetimeScope();
         }
 
         public void Register(ContainerBuilder builder, ITypeFinder typeFinder, NopConfig config)
         {
             builder.RegisterType<LotteryCategoryService>().As<ILotteryCategoryService>().InstancePerLifetimeScope();
             builder.RegisterType<LotteryCustomerService>().As<ILotteryCustomerService>().InstancePerLifetimeScope();
+            builder.RegisterType<LotteryFullService>().As<ILotteryFullService>().InstancePerLifetimeScope();
+            builder.RegisterType<LotteryService>().As<ILotteryService>().InstancePerLifetimeScope();
 
             //data context
             this.RegisterPluginDataContext<LDTrackerObjectContext>(builder, CONTEXT_NAME);
@@ -51,6 +63,16 @@ namespace Nop.Plugin.LDTracker.Infrastructure
 
             builder.RegisterType<EfRepository<LotteryCustomer>>()
                 .As<IRepository<LotteryCustomer>>()
+                .WithParameter(ResolvedParameter.ForNamed<IDbContext>(CONTEXT_NAME))
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<EfRepository<Lottery>>()
+                .As<IRepository<Lottery>>()
+                .WithParameter(ResolvedParameter.ForNamed<IDbContext>(CONTEXT_NAME))
+                .InstancePerLifetimeScope();
+
+            builder.RegisterType<EfRepository<LotteryFull>>()
+                .As<IRepository<LotteryFull>>()
                 .WithParameter(ResolvedParameter.ForNamed<IDbContext>(CONTEXT_NAME))
                 .InstancePerLifetimeScope();
         }
