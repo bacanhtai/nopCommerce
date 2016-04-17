@@ -35,6 +35,32 @@ namespace Nop.Plugin.LDTracker.Models
         [NopResourceDisplayName("LDTracker.LotteryCustomer.Fields.CreateDate")]
         public DateTime CreateDate { get; set; }
 
+        #region Nested Classes
+
+        public partial class LotteryCustomerPriceModel : BaseNopEntityModel
+        {
+            [NopResourceDisplayName("LDTracker.LotteryCustomer.Fields.Name")]
+            public string CategoryName { get; set; }
+
+            public int CategoryId { get; set; }
+
+            public int CustomerId { get; set; }
+
+            [NopResourceDisplayName("LDTracker.LotteryCustomer.Price.Fields.Price")]
+            public int Price { get; set; }
+
+            [NopResourceDisplayName("LDTracker.LotteryCustomer.Price.Fields.WinningUnit")]
+            public int WinningUnit { get; set; }
+
+            [NopResourceDisplayName("LDTracker.LotteryCustomer.Price.Fields.Active")]
+            public bool Active { get; set; }
+
+            [NopResourceDisplayName("LDTracker.LotteryCustomer.Price.Fields.BeginUsedDate")]
+            public DateTime BeginUsedDate { get; set; }
+        }
+
+        #endregion Nested Classes
+
         #region CustomerPrice
 
         public decimal Lo { get; set; }

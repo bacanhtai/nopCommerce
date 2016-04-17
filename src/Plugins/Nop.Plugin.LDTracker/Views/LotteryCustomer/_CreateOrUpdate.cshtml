@@ -1,72 +1,60 @@
 ﻿@model LotteryCustomerModel
 @using Nop.Plugin.LDTracker.Models;
+@using Nop.Core.Infrastructure;
 @using Nop.Web.Framework;
+@using Nop.Web.Framework.Events;
+@using Nop.Services.Events;
 
 @Html.ValidationSummary(true)
 @Html.HiddenFor(model => model.Id)
 
-<table class="adminContent">
-    <tr>
-        <td class="adminTitle">
-            @Html.NopLabelFor(model => model.Name):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.Name)
-            @Html.ValidationMessageFor(model => model.Name)
-        </td>
-    </tr>
-    <tr>
-        <td class="adminTitle">
-            @Html.NopLabelFor(model => model.FullName):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.FullName)
-            @Html.ValidationMessageFor(model => model.FullName)
-        </td>
-    </tr>
-    <tr>
-        <td class="adminTitle">
-            @Html.NopLabelFor(model => model.Email):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.Email)
-            @Html.ValidationMessageFor(model => model.Email)
-        </td>
-    </tr>
-    <tr>
-        <td class="adminTitle">
-            @Html.NopLabelFor(model => model.MobilePhone):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.MobilePhone)
-            @Html.ValidationMessageFor(model => model.MobilePhone)
-        </td>
-    </tr>
-    <tr>
-        <td class="adminTitle">
-            @Html.NopLabelFor(model => model.Note):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.Note)
-            @Html.ValidationMessageFor(model => model.Note)
-        </td>
-    </tr>
-    <tr>
-        <td class="adminTitle">
-            @Html.NopLabelFor(model => model.Address):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.Address)
-            @Html.ValidationMessageFor(model => model.Address)
-        </td>
-    </tr>
-    <tr>
-        <td class="adminTitle">
-            @Html.NopLabelFor(model => model.Active):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.Active)
-            @Html.ValidationMessageFor(model => model.Active)
-        </td>
-    </tr>
-</table>
+<script>
+    $(document).ready(function () {
+        $("#customer-edit").kendoTabStrip({
+            animation: {
+                open: {
+                    effects: "fadeIn"
+                }
+            },
+            select: tabstrip_on_tab_select
+        });
+    });
+</script>
+<div id="customer-edit">
+    <ul>
+        <li @Html.RenderSelectedTabIndex(0, GetSelectedTabIndex())>
+            @T("Admin.Catalog.Products.Info")
+        </li>
+        <li @Html.RenderSelectedTabIndex(1, GetSelectedTabIndex())>
+            @T("Admin.Catalog.Products.Manufacturers")
+        </li>
+    </ul>
+    <div>
+        @TabCustomerInfo()
+    </div>
+    <div>
+        @TabCustomerPrice()
+    </div>
+</div>
+
+@{
+    //custom tabs
+    var eventMessage = new AdminTabStripCreated(this.Html, "customer-edit");
+    EngineContext.Current.Resolve<IEventPublisher>().Publish(eventMessage);
+    foreach (var eventBlock in eventMessage.BlocksToRender)
+    {
+        @eventBlock
+    }
+}
+
+@*save selected tab index*@
+<input type="hidden" id="selected-tab-index" name="selected-tab-index" value="@(GetSelectedTabIndex())">
+
+@helper TabCustomerInfo()
+{
+    @Html.Partial("_CreateOrUpdate.CustomerInfo", Model)
+}
+@helper TabCustomerPrice()
+{
+    @Html.Partial("_CreateOrUpdate.CustomerPrice", Model)
+}

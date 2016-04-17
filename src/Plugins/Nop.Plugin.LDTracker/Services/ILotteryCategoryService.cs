@@ -39,5 +39,42 @@ namespace Nop.Plugin.LDTracker.Services
         /// </summary>
         /// <param name="category">Category</param>
         void DeleteCategory(LotteryCategory category);
+
+
+        #region LotteryCustomerPrice
+
+        /// <summary>
+        /// Gets all customer prices by CustomerId
+        /// </summary>
+        IPagedList<LotteryCustomerPrice> GetAllCustomerPriceByCustomerId(int customerId, int pageIndex = 0, int pageSize = int.MaxValue, bool isActived = true);
+
+        /// <summary>
+        /// Gets a category
+        /// </summary>
+        /// <param name="customerPriceId">Category identifier</param>
+        /// <returns>Category</returns>
+        LotteryCustomerPrice GetCustomerPriceById(int customerPriceId);
+
+        /// <summary>
+        /// Inserts category
+        /// </summary>
+        /// <param name="customerPrice">LotteryCustomerId</param>
+        void InsertCustomerPrice(LotteryCustomerPrice customerPrice);
+
+        /// <summary>
+        /// Updates the category
+        /// </summary>
+        /// <param name="customerPrice">LotteryCustomerId</param>
+        void UpdateCustomerPrice(LotteryCustomerPrice customerPrice);
+
+        /// <summary>
+        /// Delete category
+        /// </summary>
+        /// <param name="customerPrice">LotteryCustomerId</param>
+        void DeleteCustomerPrice(LotteryCustomerPrice customerPrice);
+
+        bool IsExistLotteryCustomerPrice(int customerId, int categoryId);
+
+        #endregion LotteryCustomerPrice
     }
 }
