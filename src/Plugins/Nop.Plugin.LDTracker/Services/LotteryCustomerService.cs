@@ -5,19 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using Nop.Core;
 using Nop.Plugin.LDTracker.Domain;
+using Nop.Plugin.LDTracker.Models;
 using Nop.Core.Data;
 using Nop.Services.Events;
+using Nop.Plugin.LDTracker.Extensions;
 
 namespace Nop.Plugin.LDTracker.Services
 {
     public class LotteryCustomerService : ILotteryCustomerService
     {
         private readonly IRepository<LotteryCustomer> _lotteryRepository;
+        private readonly IRepository<LotteryCustomerPrice> _price;
         private readonly IEventPublisher _eventPublisher;
 
-        public LotteryCustomerService(IRepository<LotteryCustomer> lotteryRepository, IEventPublisher eventPublisher)
+        public LotteryCustomerService(IRepository<LotteryCustomer> lotteryRepository, IRepository<LotteryCustomerPrice> price, IEventPublisher eventPublisher)
         {
             _lotteryRepository = lotteryRepository;
+            _price = price;
             _eventPublisher = eventPublisher;
         }
 
@@ -40,6 +44,27 @@ namespace Nop.Plugin.LDTracker.Services
             //paging
             return new PagedList<LotteryCustomer>(customers, pageIndex, pageSize);
         }
+
+        //public virtual IPagedList<LotteryCustomerModel> GetAllCustomers(int pageIndex = 0, int pageSize = int.MaxValue)
+        //{
+        //    List<LotteryCustomerModel> list = new List<LotteryCustomerModel>();
+        //    var customers = from cus in _lotteryRepository.Table
+        //                    from price in _price.Table
+        //                    where cus.Id == price.CustomerId
+        //                    && price.Active == true
+        //                    select new { cus, price };
+
+        //    if (customers.Any())
+        //    {
+        //        foreach(var item in customers)
+        //        {
+        //            var cusModel = item.cus.ToModel(item.price.)
+        //        }
+        //    }
+
+        //    //paging
+        //    return new PagedList<LotteryCustomerModel>(list, pageIndex, pageSize);
+        //}
 
         public IList<LotteryCustomerPrice> GetAllCustomerPrice(bool isActived = true)
         {

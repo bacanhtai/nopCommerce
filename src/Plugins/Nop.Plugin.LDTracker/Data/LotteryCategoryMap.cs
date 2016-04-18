@@ -15,9 +15,10 @@ namespace Nop.Plugin.LDTracker.Data
 
             Property(lc => lc.Name).IsRequired();
             Property(lc => lc.WinningUnit).IsRequired();
-            Property(lc => lc.Active).IsRequired();
             Property(lc => lc.Price).IsRequired();
+            Property(lc => lc.DuplicateWinning).IsRequired();
             Property(lc => lc.PriorityOrder).IsOptional();
+            Property(lc => lc.Active).IsRequired();
         }
     }
 }

@@ -14,13 +14,16 @@ namespace Nop.Plugin.LDTracker.Models
         [NopResourceDisplayName("LDTracker.LotteryCategory.Fields.WinningUnit")]
         public int WinningUnit { get; set; }
 
-        [NopResourceDisplayName("LDTracker.LotteryCategory.Fields.Active")]
-        public bool Active { get; set; }
-
         [NopResourceDisplayName("LDTracker.LotteryCategory.Fields.Price")]
         public int Price { get; set; }
 
+        [NopResourceDisplayName("LDTracker.LotteryCategory.Fields.DuplicateWinning")]
+        public bool DuplicateWinning { get; set; }
+
         [NopResourceDisplayName("LDTracker.LotteryCategory.Fields.PriorityOrder")]
         public int PriorityOrder { get; set; }
+
+        [NopResourceDisplayName("LDTracker.LotteryCategory.Fields.Active")]
+        public bool Active { get; set; }
     }
 }

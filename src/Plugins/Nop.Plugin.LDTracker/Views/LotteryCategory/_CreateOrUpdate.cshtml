@@ -17,24 +17,6 @@
     </tr>
     <tr>
         <td class="adminTitle">
-            @Html.NopLabelFor(model => model.WinningUnit):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.WinningUnit)
-            @Html.ValidationMessageFor(model => model.WinningUnit)
-        </td>
-    </tr>
-    <tr>
-        <td class="adminTitle">
-            @Html.NopLabelFor(model => model.Active):
-        </td>
-        <td class="adminData">
-            @Html.EditorFor(model => model.Active)
-            @Html.ValidationMessageFor(model => model.Active)
-        </td>
-    </tr>
-    <tr>
-        <td class="adminTitle">
             @Html.NopLabelFor(model => model.Price):
         </td>
         <td class="adminData">
@@ -44,11 +26,38 @@
     </tr>
     <tr>
         <td class="adminTitle">
+            @Html.NopLabelFor(model => model.WinningUnit):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.WinningUnit)
+            @Html.ValidationMessageFor(model => model.WinningUnit)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.DuplicateWinning):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.DuplicateWinning)
+            @Html.ValidationMessageFor(model => model.DuplicateWinning)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
             @Html.NopLabelFor(model => model.PriorityOrder):
         </td>
         <td class="adminData">
             @Html.EditorFor(model => model.PriorityOrder)
             @Html.ValidationMessageFor(model => model.PriorityOrder)
+        </td>
+    </tr>
+    <tr>
+        <td class="adminTitle">
+            @Html.NopLabelFor(model => model.Active):
+        </td>
+        <td class="adminData">
+            @Html.EditorFor(model => model.Active)
+            @Html.ValidationMessageFor(model => model.Active)
         </td>
     </tr>
 </table>

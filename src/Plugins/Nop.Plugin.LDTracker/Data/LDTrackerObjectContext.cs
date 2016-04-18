@@ -21,10 +21,11 @@ namespace Nop.Plugin.LDTracker.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new LotteryCategoryMap());
-            modelBuilder.Configurations.Add(new LotteryCustomerMap());
             modelBuilder.Configurations.Add(new LotteryMap());
             modelBuilder.Configurations.Add(new LotteryFullMap());
 
+            modelBuilder.Configurations.Add(new LotteryCustomerMap());
+            modelBuilder.Configurations.Add(new LotteryCustomerPriceMap());
             base.OnModelCreating(modelBuilder);
         }
 

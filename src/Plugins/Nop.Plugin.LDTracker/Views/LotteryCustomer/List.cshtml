@@ -1,5 +1,6 @@
 ﻿@model LotteryCustomerModel
 @using Nop.Plugin.LDTracker.Models;
+//sing Nop.Plugin.LDTracker.Domain;
 @using Nop.Core.Infrastructure;
 
 @{
@@ -67,7 +68,8 @@
                             field: "MobilePhone",
                             title: "@T("LDTracker.LotteryCustomer.Fields.MobilePhone")",
                             width: 100
-                        },{
+                        },
+                        @*{
                             field: "Lo",
                             title: "@T("LDTracker.LotteryCustomer.Fields.Lo")",
                             width: 100
@@ -79,13 +81,14 @@
                             field: "Xien",
                             title: "@T("LDTracker.LotteryCustomer.Fields.Xien")",
                             width: 100
-                        }, {
+                        },*@ 
+                        {
                             field: "Active",
                             title: "@T("LDTracker.LotteryCustomer.Fields.Active")",
                             width: 100,
                             headerAttributes: { style: "text-align:center" },
                             attributes: { style: "text-align:center" },
-                            template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=Published#.gif" />'
+                            template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=Active#.gif" />'
                         }, {
                             field: "Id",
                             title: "@T("Admin.Common.Edit")",

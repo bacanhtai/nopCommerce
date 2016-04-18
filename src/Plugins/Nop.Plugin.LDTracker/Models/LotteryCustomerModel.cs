@@ -63,11 +63,11 @@ namespace Nop.Plugin.LDTracker.Models
 
         #region CustomerPrice
 
-        public decimal Lo { get; set; }
+        public int Lo { get; set; }
 
-        public decimal De { get; set; }
+        public int De { get; set; }
 
-        public decimal Xien { get; set; }
+        public int Xien { get; set; }
 
         #endregion CustomerPrice
     }

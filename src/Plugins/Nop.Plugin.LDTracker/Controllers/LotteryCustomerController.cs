@@ -56,7 +56,7 @@ namespace Nop.Plugin.LDTracker.Controllers
                 Data = customers.Select(x =>
                 {
                     var customer = x.ToModel();
-                    customer.Lo = 0;
+                    //customer.Lo = 0
                     return customer;
                 }),
                 Total = customers.TotalCount

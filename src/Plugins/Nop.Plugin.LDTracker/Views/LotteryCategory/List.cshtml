@@ -67,22 +67,27 @@
                             field: "WinningUnit",
                             title: "@T("LDTracker.LotteryCategory.Fields.WinningUnit")",
                             width: 100
+                        },{
+                            field: "Price",
+                            title: "@T("LDTracker.LotteryCategory.Fields.Price")",
+                            width: 100
+                        },{
+                            field: "DuplicateWinning",
+                            title: "@T("LDTracker.LotteryCategory.Fields.DuplicateWinning")",
+                            width: 100,
+                            template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=DuplicateWinning#.gif" />'
+                       }, {
+                            field: "PriorityOrder",
+                            title: "@T("LDTracker.LotteryCategory.Fields.PriorityOrder")",
+                            width: 100
                         }, {
                             field: "Active",
                             title: "@T("LDTracker.LotteryCategory.Fields.Active")",
                             width: 100,
                             headerAttributes: { style: "text-align:center" },
-                            attributes: { style: "text-align:center" }
-                            @*template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=Published#.gif" />'*@
-                        },{
-                            field: "Price",
-                            title: "@T("LDTracker.LotteryCategory.Fields.Price")",
-                            width: 100
+                            attributes: { style: "text-align:center" },
+                            template: '<img src="@Url.Content("~/Administration/Content/images/")active-#=Active#.gif" />'
                         }, {
-                            field: "PriorityOrder",
-                            title: "@T("LDTracker.LotteryCategory.Fields.PriorityOrder")",
-                            width: 100
-                          }, {
                             field: "Id",
                             title: "@T("Admin.Common.Edit")",
                             width: 100,

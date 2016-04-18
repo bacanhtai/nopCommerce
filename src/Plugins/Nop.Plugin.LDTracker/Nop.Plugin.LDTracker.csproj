@@ -191,7 +191,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Views\LotteryCustomer\_CreateOrUpdate.CustomerPrice.cshtml" />
-    <None Include="Views\Lottery\List.cshtml" />
+    <Content Include="Views\Lottery\List.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
